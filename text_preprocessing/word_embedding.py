@@ -4,19 +4,3 @@
 - word2Vec : method of word embedding
 - sentence or paragraph embedding is popular with RAG 
 """
-
-import tiktoken  # BPE algorithm
-
-
-text = "just for test"
-
-# Build a tokenizer
-tokenizer = tiktoken.get_encoding("gpt2")
-
-# Encode the text
-integers = tokenizer.encode(text)
-print(integers)
-
-# Decode the integers
-strings = tokenizer.decode(integers)
-print(strings)

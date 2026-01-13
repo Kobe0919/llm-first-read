@@ -1,3 +1,7 @@
+'''
+Sliding window: used to generate input-target pair
+'''
+
 import tiktoken
 
 

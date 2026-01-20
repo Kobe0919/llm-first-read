@@ -21,7 +21,7 @@ dataloader = Build_GPTDataLoader(
 data_iter = iter(dataloader)
 inputs, targets = next(data_iter)
 
-# print(inputs)  # temporary output to verify the dataloader
+# print(inputs)  # DEBUG: temporary output to verify the dataloader
 # print(inputs.shape)
 
 '''
@@ -35,7 +35,7 @@ token_embedding_layer = nn.Embedding(
 )
 token_embeddings = token_embedding_layer(inputs)
 
-# print(token_embeddings.shape)  # temporary output to verify the embedding layer
+# print(token_embeddings.shape)  # DEBUG: temporary output to verify the embedding layer
 
 '''
 Build a position embedding layer
@@ -54,4 +54,4 @@ input_embedding = token_embedding + position_embedding
 
 input_embeddings = token_embeddings + pos_embeddings
 
-# print(input_embeddings.shape)  # temporary output to verify the final input embeddings
+# print(input_embeddings.shape)  # DEBUG: temporary output to verify the final input embeddings

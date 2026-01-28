@@ -1,36 +1,47 @@
-'''
-Sliding window: used to generate input-target pair
-'''
-
+"""
+Sliding window
+    Used to generate input-target pair
+"""
 import tiktoken
 
+# Sample input text
+texts = [
+    "just for test",
+    "another test sentence",
+]
 
-text = "just for test"
-
-'''
-Build a tokenizer and Encode the text to integer
-'''
-
-# Build a tokenizer
+# Initialize a tokenizer
 tokenizer = tiktoken.get_encoding("gpt2")
 
-# Encode the text
-enc_text = tokenizer.encode(text)
+def encode_text_to_tokenIDs(texts, tokenizer):
+    """
+    Encode raw texts into tokenID sequences.
 
-# print(enc_text)  # DEBUG: temporary output to verify the tokenization
+    Args:
+        texts (list of str): raw input texts.
+        tokenizer: tokenizer instance.
+    
+    Returns:
+        list of list of int: token ID sequences.
+    """
+    
+    token_ids = [tokenizer.encode(txt) for txt in texts] 
+    return token_ids
 
-'''
-Build the input-target pairs
-'''
+def sliding_window(token_ids, context_length= 4):
+    """
+    Generate input-target pair using sliding window.
+    
+    Args:
+        token_ids: list of int
+        context_length: int
+    
+    Returns:
+        input: list of int
+        target: list of int
+    """
+    
+    input = token_ids[:context_length]
+    target = token_ids[1:context_length+1]
 
-context_size = 4
-input = enc_text[:context_size]
-target = enc_text[1:context_size+1]
-
-# print(f"input: {input}")  # DEBUG: temporary output to verify the tokenization
-# print(f"target: {target}")
-
-# for i in range(1, context_size+1):  # DEBUG: temporary output to verify the tokenization
-#     context = enc_text[:i]
-#     desired = enc_text[i]
-#     print(f"{context} ---> {desired}")
+    return input, target
